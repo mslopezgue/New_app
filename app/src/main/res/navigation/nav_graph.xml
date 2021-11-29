@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/listaFragment">
+
+    <fragment
+        android:id="@+id/buscarFragment"
+        android:name="com.example.new_app.ui.BuscarFragment"
+        android:label="BuscarFragment" >
+        <action
+            android:id="@+id/action_buscarFragment_to_articuloFragment"
+            app:destination="@id/articuloFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/articuloFragment"
+        android:name="com.example.new_app.ui.ArticuloFragment"
+        android:label="articulo_fragment"
+        tools:layout="@layout/articulo_fragment" />
+    <fragment
+        android:id="@+id/listaFragment"
+        android:name="com.example.new_app.ui.ListaFragment"
+        android:label="lista_fragment"
+        tools:layout="@layout/lista_fragment" >
+        <action
+            android:id="@+id/action_listaFragment_to_articuloFragment"
+            app:destination="@id/articuloFragment" />
+        <action
+            android:id="@+id/action_listaFragment_to_buscarFragment2"
+            app:destination="@id/buscarFragment" />
+    </fragment>
+</navigation>
