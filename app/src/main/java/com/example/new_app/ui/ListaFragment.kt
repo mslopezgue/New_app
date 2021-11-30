@@ -38,7 +38,7 @@ class ListaFragment : Fragment() {
             rvNoticias.adapter = adapter
             viewModel.traeDataServer()
             adapter.setOnItemClickListener(object : AdaptadorNoticias.OnClickListenerRV {
-                override fun alClickearItem(noticia: Articulo) {
+                override fun onClickItem(noticia: Articulo) {
 
 
                     var miBundle = Bundle()

@@ -35,12 +35,12 @@ class BuscarFragment : Fragment() {
         {
             rvNoticias.layoutManager = LinearLayoutManager(context)
             rvNoticias.adapter = adapter
-            viewModel.buscarNoticiasenViewModel("Chile", "es","6d648fd5802448b09fe8a59863c5efc1")
+            viewModel.buscarNoticiasenViewModel("Chile", "es","e15d263b39584d48867ee430d7a1ab93")
 
             adapter.setOnItemClickListener(object : AdaptadorNoticias.OnClickListenerRV {
 
-                override fun alClickearItem(noticia: Articulo) {
-                    //Lo que quiero al hacer click al recicler en el fragmemnt buscar
+                override fun onClickItem(noticia: Articulo) {
+
 
                     var miBundleEnBuscar = Bundle()
                     miBundleEnBuscar.putSerializable("noticia", noticia)

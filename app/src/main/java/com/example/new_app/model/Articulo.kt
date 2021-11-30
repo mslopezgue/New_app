@@ -1,8 +1,16 @@
 package com.example.new_app.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.io.Serializable
 
+@Entity(
+    tableName = "articles"
+)
 data class Articulo(
+
+    @PrimaryKey(autoGenerate = true)
+    var id: Int? = null,
     val author: String,
     val content: String,
     val description: String,
@@ -11,5 +19,4 @@ data class Articulo(
     val title: String,
     val url: String,
     val urlToImage: String
-    )
-    : Serializable
+) : Serializable

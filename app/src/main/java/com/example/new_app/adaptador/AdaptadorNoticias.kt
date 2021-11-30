@@ -11,57 +11,52 @@ import com.squareup.picasso.Picasso
 
 class AdaptadorNoticias : RecyclerView.Adapter<AdaptadorNoticias.CustomViewHolder>() {
 
-    private var lista : List<Articulo> = ArrayList()
-    lateinit var onClickListener: OnClickListenerRV
+    private var newlista : List<Articulo> = ArrayList()
+    lateinit var listener: OnClickListenerRV
 
-    class CustomViewHolder(itemView: View, var onClickListener: OnClickListenerRV) : RecyclerView.ViewHolder(itemView) {
+    class CustomViewHolder(itemView: View, var listener: OnClickListenerRV) : RecyclerView.ViewHolder(itemView) {
 
         private val binding = ItemRowBinding.bind(itemView)
-
         fun bindData(noticia:Articulo) {
 
             binding.tvTitulo.text = noticia.title
             binding.tvFecha.text = noticia.source.name
             binding.tvDescripcion.text = noticia.description
-
-
-            Picasso.get().load(noticia.urlToImage).fit().centerCrop()
-                .placeholder(R.drawable.user_placeholder)
-                .error(R.drawable.user_placeholder_error)
+            Picasso.get()
+                .load(noticia.urlToImage)
+                .fit().centerCrop()
                 .into(binding.ivImageArt)
-
-            itemView.setOnClickListener{
-                onClickListener.alClickearItem(noticia)
+            itemView.setOnClickListener{ listener.onClickItem(noticia)
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
         val view:View = LayoutInflater.from(parent.context).inflate(R.layout.item_row,parent,false)
-        return CustomViewHolder(view, onClickListener)
+        return CustomViewHolder(view, listener)
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        holder.bindData(lista[position])
+        holder.bindData(newlista[position])
     }
 
     override fun getItemCount(): Int {
-        return lista.size
+        return newlista.size
     }
 
     fun setNoticia(noticias:List<Articulo>)
     {
-        lista = noticias as ArrayList<Articulo>
+        newlista = noticias as ArrayList<Articulo>
         notifyDataSetChanged()
     }
 
     interface OnClickListenerRV{
-        fun alClickearItem(noticia: Articulo)
+        fun onClickItem(noticia: Articulo)
     }
 
-    fun setOnItemClickListener(onClickListener: OnClickListenerRV)
+    fun setOnItemClickListener(listener: OnClickListenerRV)
     {
-        this.onClickListener = onClickListener
+        this.listener = listener
     }
 
 }

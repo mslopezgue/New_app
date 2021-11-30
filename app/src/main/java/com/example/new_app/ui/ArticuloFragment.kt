@@ -37,9 +37,9 @@ class ArticuloFragment : Fragment() {
             tvTituloDetalle.text = noticia.title
             tvNoticia.text = noticia.description
 
-            Picasso.get().load(noticia.urlToImage).fit().centerCrop()
-                .placeholder(R.drawable.user_placeholder)
-                .error(R.drawable.user_placeholder_error)
+            Picasso.get()
+                .load(noticia.urlToImage)
+                .fit().centerCrop()
                 .into(binding.ivImagenDetalle)
         }
 

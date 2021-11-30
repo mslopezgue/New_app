@@ -4,32 +4,20 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.new_app.model.Articulo
 import androidx.lifecycle.ViewModel
+import com.bumptech.glide.load.engine.Resource
 import com.example.new_app.repositorio.RepositorioNoticias
 
-class ViewModel:  ViewModel() {
-    private var repositorio = RepositorioNoticias()
+class ViewModel  (
 
-    fun traeDataServer() {
-        Log.v("expone traeDataServer", repositorio.traerDataRepo().toString())
-        repositorio.traerDataRepo()
+    val newsRepository: RepositorioNoticias
+    ) : ViewModel() {
 
-    }
+        val homeNews: MutableLiveData<Resource<NoticiAResponse>> = MutableLiveData()
+        var breakingNewsPage = 1
 
-    fun traerNoticiasViewModel(): MutableLiveData<List<Articulo>> {
+        val searchNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
+        var searchNewsPage = 1
 
-        Log.v("expone traerNoticiasViewModel", repositorio.mostrarDataRepo().value.toString())
-        return repositorio.mostrarDataRepo()
+        init {
+          homeNews("mx")private var repositorio = RepositorioNoticias()
 
-    }
-
-    fun buscarNoticiasenViewModel (noticia:String, idioma: String, apikey:String) {
-        Log.v("expone buscarNoticiasenViewModel", repositorio.buscarNoticiasEnRepo(noticia, idioma,apikey).toString())
-        return repositorio.buscarNoticiasEnRepo(noticia, idioma,apikey)
-    }
-
-    fun MostrarBusquedaViewModel(): MutableLiveData<List<Articulo>> {
-        Log.v("expone MostrarBusquedaViewModel", repositorio.exponeBusquedaDeNoticias_EnRepo().value.toString())
-        return repositorio.mostrarDataRepo()
-    }
-
-}
